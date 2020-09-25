@@ -1,0 +1,5124 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>just TRPG - 妖刀歡喜－克爾斯</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/495551793992957962/c984650d4b9013b7083f627f6ac10c40.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">just TRPG</div>
+        <div class="preamble__entry">忍神trpg / 妖刀歡喜－克爾斯</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 08:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="757586106484129802" id="message-757586106484129802">
+                <div class="chatlog__content">
+                    <div class="markdown">//骰.sg st </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757586143452856474" id="message-757586143452856474">
+                <div class="chatlog__content">
+                    <div class="markdown">// <span class="mention" title="waganda#7905">@waganda</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 08:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="757586288961388557" id="message-757586288961388557">
+                <div class="chatlog__content">
+                    <div class="markdown">.sg st </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 08:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="757586289716625458" id="message-757586289716625458">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="waganda#7905">@waganda</span>
+st: シーン表(8) ＞ 凄まじい人混み。喧噪。影の世界のことを知らない無邪気な人々の手柄話や無駄話が騒がしい。 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 08:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="757586555136245781" id="message-757586555136245781">
+                <div class="chatlog__content">
+                    <div class="markdown">//大量而喧囂的人潮。對影世界一無所知的天真之人的高談和閒聊十分吵鬧 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="757586979171991613" id="message-757586979171991613">
+                <div class="chatlog__content">
+                    <div class="markdown">調查奈雅秘密 <span class="chatlog__edited-timestamp" title="21-Sep-20 09:00 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757587000940560525" id="message-757587000940560525">
+                <div class="chatlog__content">
+                    <div class="markdown">第六感 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587182855913513" id="message-757587182855913513">
+                <div class="chatlog__content">
+                    <div class="markdown">//幹嘛拉 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757587195996536992" id="message-757587195996536992">
+                <div class="chatlog__content">
+                    <div class="markdown">//www </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757587266515239034" id="message-757587266515239034">
+                <div class="chatlog__content">
+                    <div class="markdown">//一堆人都要查我的感覺 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757587274958503978" id="message-757587274958503978">
+                <div class="chatlog__content">
+                    <div class="markdown">//三小 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587326749900910" id="message-757587326749900910">
+                <div class="chatlog__content">
+                    <div class="markdown">//rp啊 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587327953666108" id="message-757587327953666108">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>我們有協定的，第一巡一致對外</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587422715576432" id="message-757587422715576432">
+                <div class="chatlog__content">
+                    <div class="markdown">//他們私下協定第一巡不互打 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587494135922699" id="message-757587494135922699">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">我可以用技能嗎？</span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587513719128117" id="message-757587513719128117">
+                <div class="chatlog__content">
+                    <div class="markdown">//喔 好吧 其實不用說也沒關係 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587569738514534" id="message-757587569738514534">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>剛剛場景的協定就是和平協議</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587611807121410" id="message-757587611807121410">
+                <div class="chatlog__content">
+                    <div class="markdown">//話說我的祕密被知道的話 我本人會知道嗎 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587709614227567" id="message-757587709614227567">
+                <div class="chatlog__content">
+                    <div class="markdown">//如果有可以使用的忍法當然能使用 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587856108814406" id="message-757587856108814406">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">他好像沒說要不要在同場景耶</span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="757587948320325692" id="message-757587948320325692">
+                <div class="chatlog__content">
+                    <div class="markdown">//那就可以 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="757588030143070329" id="message-757588030143070329">
+                <div class="chatlog__content">
+                    <div class="markdown">//該不會是斜齒的那個.......... </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="757588124384624782" id="message-757588124384624782">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text"> <span class="mention" title="waganda#7905">@waganda</span> 繼續rp , 我只是先喊要發動而已…</span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="757588223084986518" id="message-757588223084986518">
+                <div class="chatlog__content">
+                    <div class="markdown">運用第六感找尋奈雅 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757588284238069901" id="message-757588284238069901">
+                <div class="chatlog__content">
+                    <div class="markdown">2d6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="757588284716220517" id="message-757588284716220517">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="waganda#7905">@waganda</span>
+2d6：
+9[5+4] = 9 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="757588298809212949" id="message-757588298809212949">
+                <div class="chatlog__content">
+                    <div class="markdown">//<span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">繼續rp，別怕，我第一巡一定會幫你</span></span> <span class="chatlog__edited-timestamp" title="21-Sep-20 09:05 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="757588587826118748" id="message-757588587826118748">
+                <div class="chatlog__content">
+                    <div class="markdown">跟蹤他後找到了他的秘密 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="757588727882317895" id="message-757588727882317895">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">我也要骰？？</span></span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757588878549844049" id="message-757588878549844049">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">還是他成功就算？哪那個cost@@??</span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="757588969843195994" id="message-757588969843195994">
+                <div class="chatlog__content">
+                    <div class="markdown">你在跟蹤的時候被奈雅雇用的護衛偷襲了
+//忍法防諜 <span class="chatlog__edited-timestamp" title="21-Sep-20 09:08 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589086298177536" id="message-757589086298177536">
+                <div class="chatlog__content">
+                    <div class="markdown">//第六感判定，達成值8 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757589170301698069" id="message-757589170301698069">
+                <div class="chatlog__content">
+                    <div class="markdown">//骰 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589203071795282" id="message-757589203071795282">
+                <div class="chatlog__content">
+                    <div class="markdown">2D6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589203658735787" id="message-757589203658735787">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="赤日#8416">@奈雅-赤日</span>
+2D6：
+6[3+3] = 6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589238387834890" id="message-757589238387834890">
+                <div class="chatlog__content">
+                    <div class="markdown">//失敗 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589353596846190" id="message-757589353596846190">
+                <div class="chatlog__content">
+                    <div class="markdown">//?? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589375377735821" id="message-757589375377735821">
+                <div class="chatlog__content">
+                    <div class="markdown">繞過護衛，並且到了奈雅的房間 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589393618763926" id="message-757589393618763926">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">笑死 是你骰ㄛ</span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589483867865089" id="message-757589483867865089">
+                <div class="chatlog__content">
+                    <div class="markdown">//可以在有人進行【情報判定】時使用。以執行情報判定的角色為目標。該情報判定使用的特技的判定成功，則對目標造成1點射擊戰傷害。 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589492155547769" id="message-757589492155547769">
+                <div class="chatlog__content">
+                    <div class="markdown">//是我骰? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589521792630824" id="message-757589521792630824">
+                <div class="chatlog__content">
+                    <div class="markdown">//為啥我需要骰 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757589541073977405" id="message-757589541073977405">
+                <div class="chatlog__content">
+                    <div class="markdown">//他成功直接打1點阿 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589591698964560" id="message-757589591698964560">
+                <div class="chatlog__content">
+                    <div class="markdown">//<img class="emoji " alt="🤔" title="🤔" src="https://twemoji.maxcdn.com/2/72x72/1f914.png"> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757589627510063304" id="message-757589627510063304">
+                <div class="chatlog__content">
+                    <div class="markdown">//那為啥有花費 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589642143858798" id="message-757589642143858798">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">Bug?</span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589710267875619" id="message-757589710267875619">
+                <div class="chatlog__content">
+                    <div class="markdown">//我不知道 但我問過用這個忍法的玩家 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589733399330856" id="message-757589733399330856">
+                <div class="chatlog__content">
+                    <div class="markdown">//而且還有指定特技 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589744262840491" id="message-757589744262840491">
+                <div class="chatlog__content">
+                    <div class="markdown">//他說戰鬥外不計算消費 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757589828811358238" id="message-757589828811358238">
+                <div class="chatlog__content">
+                    <div class="markdown">// <span class="mention" title="Tiarff#0331">@梅爾</span> 有空嗎  可以幫忙解答一下嗎 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="757589957354455061" id="message-757589957354455061">
+                <div class="chatlog__content">
+                    <div class="markdown">//喔，我的錯 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757589994721247292" id="message-757589994721247292">
+                <div class="chatlog__content">
+                    <div class="markdown">//是大失敗值上升 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757590044176547892" id="message-757590044176547892">
+                <div class="chatlog__content">
+                    <div class="markdown">//看成達成值 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757590091140169789" id="message-757590091140169789">
+                <div class="chatlog__content">
+                    <div class="markdown">//所以剛剛好成功 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757590164817182730" id="message-757590164817182730">
+                <div class="chatlog__content">
+                    <div class="markdown">//克爾斯失去一點生命力 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757590258513739816" id="message-757590258513739816">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>我還想說這成功機率真低</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590272589955133" id="message-757590272589955133">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">什麼意思？</span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590367628558458" id="message-757590367628558458">
+                <div class="chatlog__content">
+                    <div class="markdown">//他用第六感調查 我骰一個第六感 過了打一點 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757590405565907054" id="message-757590405565907054">
+                <div class="chatlog__content">
+                    <div class="markdown">//所以他被我打中了 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757590519776804975" id="message-757590519776804975">
+                <div class="chatlog__content">
+                    <div class="markdown">//射擊戰指定一排封 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590530413822058" id="message-757590530413822058">
+                <div class="chatlog__content">
+                    <div class="markdown">//射擊戰是我自選一個 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757590550739157152" id="message-757590550739157152">
+                <div class="chatlog__content">
+                    <div class="markdown">//不是你 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590568854355991" id="message-757590568854355991">
+                <div class="chatlog__content">
+                    <div class="markdown">//喔 抱歉 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590612613791858" id="message-757590612613791858">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/757567097776635994/757590612840284170/ebcb0832faf7b7a1.PNG">
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/757567097776635994/757590612840284170/ebcb0832faf7b7a1.PNG" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590687376998430" id="message-757590687376998430">
+                <div class="chatlog__content">
+                    <div class="markdown">//那我秘密還是要給嗎 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590709262876775" id="message-757590709262876775">
+                <div class="chatlog__content">
+                    <div class="markdown">//會給阿 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590719690047490" id="message-757590719690047490">
+                <div class="chatlog__content">
+                    <div class="markdown">//要 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590889135865946" id="message-757590889135865946">
+                <div class="chatlog__content">
+                    <div class="markdown">//此外 我在發動天眼 我打中人我可以拿秘密或居所 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757590910778212404" id="message-757590910778212404">
+                <div class="chatlog__content">
+                    <div class="markdown">//我要你的祕密 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590925630505002" id="message-757590925630505002">
+                <div class="chatlog__content">
+                    <div class="markdown">//骰 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757590962783518843" id="message-757590962783518843">
+                <div class="chatlog__content">
+                    <div class="markdown">//這個也要過判定 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590965480456323" id="message-757590965480456323">
+                <div class="chatlog__content">
+                    <div class="markdown">2D6 對人 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590965660811306" id="message-757590965660811306">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="赤日#8416">@奈雅-赤日</span>
+2D6：對人
+7[2+5] = 7 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590991724085269" id="message-757590991724085269">
+                <div class="chatlog__content">
+                    <div class="markdown">//成功 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757590992605151333" id="message-757590992605151333">
+                <div class="chatlog__content">
+                    <div class="markdown">//<span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">幹,妳果然是公安隱密局的wwww</span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591010468429835" id="message-757591010468429835">
+                <div class="chatlog__content">
+                    <div class="markdown">//笑死 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591105629061180" id="message-757591105629061180">
+                <div class="chatlog__content">
+                    <div class="markdown">//我給秘密 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591122724913152" id="message-757591122724913152">
+                <div class="chatlog__content">
+                    <div class="markdown">//赤日給天藍和w秘密，w給赤日秘密 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591125052620950" id="message-757591125052620950">
+                <div class="chatlog__content">
+                    <div class="markdown">//你也給我 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591136985415711" id="message-757591136985415711">
+                <div class="chatlog__content">
+                    <div class="markdown">//我先給 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757591151611084881" id="message-757591151611084881">
+                <div class="chatlog__content">
+                    <div class="markdown">//你再給我? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591158028238960" id="message-757591158028238960">
+                <div class="chatlog__content">
+                    <div class="markdown">//然後我因為感情也獲得了 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591161929072722" id="message-757591161929072722">
+                <div class="chatlog__content">
+                    <div class="markdown">//可以嗎 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591253381808198" id="message-757591253381808198">
+                <div class="chatlog__content">
+                    <div class="markdown">//好像我最虧ㄛ </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591471779217469" id="message-757591471779217469">
+                <div class="chatlog__content">
+                    <div class="markdown">等等 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757591493149196309" id="message-757591493149196309">
+                <div class="chatlog__content">
+                    <div class="markdown">我要發動能力 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757591522479964230" id="message-757591522479964230">
+                <div class="chatlog__content">
+                    <div class="markdown">訊杖    
+    
+不意擊 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757591553731723274" id="message-757591553731723274">
+                <div class="chatlog__content">
+                    <div class="markdown">//自己因情報判定獲得【秘密】時使用。選擇【秘密】的擁有者。指定特技判定成功則目標執行【拷問術】判定，失敗則受到1點射擊戰傷害。 <span class="chatlog__edited-timestamp" title="21-Sep-20 09:18 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757591575973855343" id="message-757591575973855343">
+                <div class="chatlog__content">
+                    <div class="markdown">//自己的劇情階段可以使用。以同一場景裡一個角色為目標。指定特技判定成功則對目標造成接近戰傷害1點。本忍法在同一劇本裏對同一角色使用第二次則無效。 <span class="chatlog__edited-timestamp" title="21-Sep-20 09:18 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591635998670950" id="message-757591635998670950">
+                <div class="chatlog__content">
+                    <div class="markdown">//骰 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591636535541890" id="message-757591636535541890">
+                <div class="chatlog__content">
+                    <div class="markdown">//好激烈啊www </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591653048516651" id="message-757591653048516651">
+                <div class="chatlog__content">
+                    <div class="markdown">2d6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591653455364148" id="message-757591653455364148">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="waganda#7905">@waganda</span>
+2d6：
+9[5+4] = 9 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591726222213191" id="message-757591726222213191">
+                <div class="chatlog__content">
+                    <div class="markdown">2d6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591726784381028" id="message-757591726784381028">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="waganda#7905">@waganda</span>
+2d6：
+10[6+4] = 10 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591738931216436" id="message-757591738931216436">
+                <div class="chatlog__content">
+                    <div class="markdown">//赤日也骰一次拷問術 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591779439673394" id="message-757591779439673394">
+                <div class="chatlog__content">
+                    <div class="markdown">//為何? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591792576364545" id="message-757591792576364545">
+                <div class="chatlog__content">
+                    <div class="markdown">2D6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591793339465840" id="message-757591793339465840">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="赤日#8416">@奈雅-赤日</span>
+2D6：
+10[4+6] = 10 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591843738353825" id="message-757591843738353825">
+                <div class="chatlog__content">
+                    <div class="markdown">//跟我依樣 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591864177197086" id="message-757591864177197086">
+                <div class="chatlog__content">
+                    <div class="markdown">//自己看清楚忍法效果 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="757591897609863259" id="message-757591897609863259">
+                <div class="chatlog__content">
+                    <div class="markdown">//赤日必須對抗 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592016321380482" id="message-757592016321380482">
+                <div class="chatlog__content">
+                    <div class="markdown">//不是對抗，是他要骰失敗才會受傷 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592084319436811" id="message-757592084319436811">
+                <div class="chatlog__content">
+                    <div class="markdown">//所以他-幾點? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592163503571095" id="message-757592163503571095">
+                <div class="chatlog__content">
+                    <div class="markdown">//接近戰成功,射擊戰失敗 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592164657266808" id="message-757592164657266808">
+                <div class="chatlog__content">
+                    <div class="markdown">//不意擊成功，一點接近戰傷害 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757592227269836810" id="message-757592227269836810">
+                <div class="chatlog__content">
+                    <div class="markdown">//赤日骰1d6來損失特技 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592305455726615" id="message-757592305455726615">
+                <div class="chatlog__content">
+                    <div class="markdown">1D6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592306131009688" id="message-757592306131009688">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="赤日#8416">@奈雅-赤日</span>
+1D6：
+4[4] = 4 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592355842031686" id="message-757592355842031686">
+                <div class="chatlog__content">
+                    <div class="markdown">//你運氣也太好 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592405561180201" id="message-757592405561180201">
+                <div class="chatlog__content">
+                    <div class="markdown">//爽爆 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592431758671923" id="message-757592431758671923">
+                <div class="chatlog__content">
+                    <div class="markdown">//從左至右，從上到下來數 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592453758058566" id="message-757592453758058566">
+                <div class="chatlog__content">
+                    <div class="markdown">//我躺好了 等死 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592517918326814" id="message-757592517918326814">
+                <div class="chatlog__content">
+                    <div class="markdown">//然後w還沒損失特技 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592529184096336" id="message-757592529184096336">
+                <div class="chatlog__content">
+                    <div class="markdown">//<span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">公安隱密局的剛好就是4www</span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592606879514735" id="message-757592606879514735">
+                <div class="chatlog__content">
+                    <div class="markdown">//那啥 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592627892846603" id="message-757592627892846603">
+                <div class="chatlog__content">
+                    <div class="markdown">//所以我要怎麼扣 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592638013571083" id="message-757592638013571083">
+                <div class="chatlog__content">
+                    <div class="markdown">//謀術 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592700500443278" id="message-757592700500443278">
+                <div class="chatlog__content">
+                    <div class="markdown">//OK </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592716581535774" id="message-757592716581535774">
+                <div class="chatlog__content">
+                    <div class="markdown">//赤日那排都被封殺了 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="757592859066236938" id="message-757592859066236938">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>用兵糧丸或回覆判定來啊</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="757594766086111382" id="message-757594766086111382">
+                <div class="chatlog__content">
+                    <div class="markdown">.sg st </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="757594766534770809" id="message-757594766534770809">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="waganda#7905">@waganda</span>
+st: シーン表(7) ＞ 清廉な気配が漂う森の中。鳥の囀りや、そよ風が樹々を通り過ぎる音が聞こえる。 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="757594927541649469" id="message-757594927541649469">
+                <div class="chatlog__content">
+                    <div class="markdown">調查QB </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="757594982436700212" id="message-757594982436700212">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>真來啊</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595088972152893" id="message-757595088972152893">
+                <div class="chatlog__content">
+                    <div class="markdown">用第六感找他 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757595106961391796" id="message-757595106961391796">
+                <div class="chatlog__content">
+                    <div class="markdown">2d6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595107330621471" id="message-757595107330621471">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="waganda#7905">@waganda</span>
+2d6：
+9[3+6] = 9 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595185356996648" id="message-757595185356996648">
+                <div class="chatlog__content">
+                    <div class="markdown">//防諜 再打一次 <span class="chatlog__edited-timestamp" title="21-Sep-20 09:33 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595241015672914" id="message-757595241015672914">
+                <div class="chatlog__content">
+                    <div class="markdown">//骰啊 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595262838505502" id="message-757595262838505502">
+                <div class="chatlog__content">
+                    <div class="markdown">2D6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595263140364358" id="message-757595263140364358">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="赤日#8416">@奈雅-赤日</span>
+2D6：
+11[5+6] = 11 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595288524292166" id="message-757595288524292166">
+                <div class="chatlog__content">
+                    <div class="markdown">//乾我啥是 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595298183905324" id="message-757595298183905324">
+                <div class="chatlog__content">
+                    <div class="markdown">//成功 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595305196912680" id="message-757595305196912680">
+                <div class="chatlog__content">
+                    <div class="markdown">//等等 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757595316227932200" id="message-757595316227932200">
+                <div class="chatlog__content">
+                    <div class="markdown">//啥 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595362272870551" id="message-757595362272870551">
+                <div class="chatlog__content">
+                    <div class="markdown">//我的防諜 沒限次數 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757595401628156066" id="message-757595401628156066">
+                <div class="chatlog__content">
+                    <div class="markdown">//查我就打 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595494074810369" id="message-757595494074810369">
+                <div class="chatlog__content">
+                    <div class="markdown">//草 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757595658181017800" id="message-757595658181017800">
+                <div class="chatlog__content">
+                    <div class="markdown">//我可以消除我沒點的嗎 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595798778150984" id="message-757595798778150984">
+                <div class="chatlog__content">
+                    <div class="markdown">//可以 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595805182853170" id="message-757595805182853170">
+                <div class="chatlog__content">
+                    <div class="markdown">//你對赤日用遁甲符啊 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="757595905703673857" id="message-757595905703673857">
+                <div class="chatlog__content">
+                    <div class="markdown">//好了 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757595952650518578" id="message-757595952650518578">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="天藍雪球#2553">@QB 5號機 (八重虎之介)</span> 給我秘密 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757596092933341215" id="message-757596092933341215">
+                <div class="chatlog__content">
+                    <div class="markdown">//<span class="mention" title="燈火#8396">@燈火</span> 射擊站也扣體力? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596103620165647" id="message-757596103620165647">
+                <div class="chatlog__content">
+                    <div class="markdown">//等等 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596118636036147" id="message-757596118636036147">
+                <div class="chatlog__content">
+                    <div class="markdown">//當然 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596127095816232" id="message-757596127095816232">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>拿去吧,小偷</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596216346279947" id="message-757596216346279947">
+                <div class="chatlog__content">
+                    <div class="markdown">//沒事 只要查我就能打 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596224953253940" id="message-757596224953253940">
+                <div class="chatlog__content">
+                    <div class="markdown">//笑死 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596240694476812" id="message-757596240694476812">
+                <div class="chatlog__content">
+                    <div class="markdown">//www </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757596268775342202" id="message-757596268775342202">
+                <div class="chatlog__content">
+                    <div class="markdown">//天眼 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757596293064425483" id="message-757596293064425483">
+                <div class="chatlog__content">
+                    <div class="markdown">//我要你的居所 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596305496342650" id="message-757596305496342650">
+                <div class="chatlog__content">
+                    <div class="markdown">//判定啊 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596308906442896" id="message-757596308906442896">
+                <div class="chatlog__content">
+                    <div class="markdown">2D6 對人 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 09:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596309468479569" id="message-757596309468479569">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="赤日#8416">@奈雅-赤日</span>
+2D6：對人
+11[6+5] = 11 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596341999239168" id="message-757596341999239168">
+                <div class="chatlog__content">
+                    <div class="markdown">//取得 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596483858989056" id="message-757596483858989056">
+                <div class="chatlog__content">
+                    <div class="markdown">//那我啥都不發動 <span class="chatlog__edited-timestamp" title="21-Sep-20 09:38 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 09:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="757596627820085331" id="message-757596627820085331">
+                <div class="chatlog__content">
+                    <div class="markdown">//結束 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="757615866639679599" id="message-757615866639679599">
+                <div class="chatlog__content">
+                    <div class="markdown">.sg st </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 10:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="757615867436597289" id="message-757615867436597289">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="waganda#7905">@waganda</span>
+st: シーン表(3) ＞ これは……夢か？　もう終わったはずの過去。しかし、それを忘れることはできない。 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616260317053048" id="message-757616260317053048">
+                <div class="chatlog__content">
+                    <div class="markdown">探查以法情報 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616266205724703" id="message-757616266205724703">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>手上沒資料，給天藍翻譯</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616296903835802" id="message-757616296903835802">
+                <div class="chatlog__content">
+                    <div class="markdown">防諜 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616310359294044" id="message-757616310359294044">
+                <div class="chatlog__content">
+                    <div class="markdown">//rp </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616473093963876" id="message-757616473093963876">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">再來一個防碟啊</span></span> </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757616521462939668" id="message-757616521462939668">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text"><img class="emoji " alt="human_evil" title="human_evil" src="https://cdn.discordapp.com/emojis/738060592597827604.png"> </span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616545772863619" id="message-757616545772863619">
+                <div class="chatlog__content">
+                    <div class="markdown">這個是......夢嗎?
+雖是已經結束的過去,但我絕不會因此忘卻那一切 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616595769229384" id="message-757616595769229384">
+                <div class="chatlog__content">
+                    <div class="markdown">//... </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616634813874276" id="message-757616634813874276">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>然後赤日也一起防諜</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616690371756183" id="message-757616690371756183">
+                <div class="chatlog__content">
+                    <div class="markdown"><div class="quote">這個是......夢嗎?
+雖是已經結束的過去,但我絕不會因此忘卻那一切
+</div><span class="mention" title="天藍雪球#2553">@QB 5號機 (八重虎之介)</span> 忘卻我的肉體與妓院？ </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616711997325475" id="message-757616711997325475">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>這幾個公安局的真過分</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616738710847489" id="message-757616738710847489">
+                <div class="chatlog__content">
+                    <div class="markdown">//笑死 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616844516491329" id="message-757616844516491329">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">我怎麼越玩越歪啊<img class="emoji " alt="human_evil" title="human_evil" src="https://cdn.discordapp.com/emojis/738060592597827604.png"> </span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616892725821651" id="message-757616892725821651">
+                <div class="chatlog__content">
+                    <div class="markdown">//w先rp啊 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616896827719762" id="message-757616896827719762">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="spoiler spoiler--hidden" onclick="showSpoiler(event, this)"><span class="spoiler-text">正義的牧師呢</span></span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616949047066625" id="message-757616949047066625">
+                <div class="chatlog__content">
+                    <div class="markdown">用第六感找他 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616951643209741" id="message-757616951643209741">
+                <div class="chatlog__content">
+                    <div class="markdown">//可以變成,妳以前其實有查過以法,而妳回憶起了這件事 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616968001126613" id="message-757616968001126613">
+                <div class="chatlog__content">
+                    <div class="markdown">2d6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616968852308140" id="message-757616968852308140">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="waganda#7905">@waganda</span>
+2d6：
+2[1+1] = 2 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616983696212127" id="message-757616983696212127">
+                <div class="chatlog__content">
+                    <div class="markdown">… </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616985893765240" id="message-757616985893765240">
+                <div class="chatlog__content">
+                    <div class="markdown">大失敗 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="757616997272911883" id="message-757616997272911883">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="human_evil" title="human_evil" src="https://cdn.discordapp.com/emojis/738060592597827604.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 10:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617000687206501" id="message-757617000687206501">
+                <div class="chatlog__content">
+                    <div class="markdown">//大失敗 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757617179842576595" id="message-757617179842576595">
+                <div class="chatlog__content">
+                    <div class="markdown">//對了，防諜不能用，<s>因為他失敗了</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617259945525268" id="message-757617259945525268">
+                <div class="chatlog__content">
+                    <div class="markdown">不意擊 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617303264428053" id="message-757617303264428053">
+                <div class="chatlog__content">
+                    <div class="markdown">//稍等 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617384470216824" id="message-757617384470216824">
+                <div class="chatlog__content">
+                    <div class="markdown">//妳先1d6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617419756765285" id="message-757617419756765285">
+                <div class="chatlog__content">
+                    <div class="markdown">1d6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617420595888198" id="message-757617420595888198">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="waganda#7905">@waganda</span>
+1d6：
+2[2] = 2 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617436890628116" id="message-757617436890628116">
+                <div class="chatlog__content">
+                    <div class="markdown">劇情階段大失敗會吃大失敗表 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617516611764294" id="message-757617516611764294">
+                <div class="chatlog__content">
+                    <div class="markdown">//… </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617517027000361" id="message-757617517027000361">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="安度因#5521">@安度因</span>
+  以法，無盡深淵第9層探勘！ </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617529312247862" id="message-757617529312247862">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="pre pre--inline">2:大事不好! 損失一個任意忍具。   </span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617633792360609" id="message-757617633792360609">
+                <div class="chatlog__content">
+                    <div class="markdown"> </div>
+                </div>
+
+                    <div class="chatlog__attachment">
+                            <a href="https://cdn.discordapp.com/attachments/757567097776635994/757617633381187604/Screenshot_20200921-230140_Drive.jpg">
+                                    <img class="chatlog__attachment-thumbnail" src="https://cdn.discordapp.com/attachments/757567097776635994/757617633381187604/Screenshot_20200921-230140_Drive.jpg" alt="Attachment">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617648598253707" id="message-757617648598253707">
+                <div class="chatlog__content">
+                    <div class="markdown">看來是在睡覺時遭小偷了 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617700771201284" id="message-757617700771201284">
+                <div class="chatlog__content">
+                    <div class="markdown">遁甲符 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757617719834050658" id="message-757617719834050658">
+                <div class="chatlog__content">
+                    <div class="markdown">睡覺時遭小偷了 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617791724421202" id="message-757617791724421202">
+                <div class="chatlog__content">
+                    <div class="markdown">//結束 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617807163654144" id="message-757617807163654144">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>忍者遭小偷</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617838025605121" id="message-757617838025605121">
+                <div class="chatlog__content">
+                    <div class="markdown"><img class="emoji emoji--large" alt="human_evil" title="human_evil" src="https://cdn.discordapp.com/emojis/738060592597827604.png"> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617926999244810" id="message-757617926999244810">
+                <div class="chatlog__content">
+                    <div class="markdown">不意擊 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617945886195902" id="message-757617945886195902">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>這小偷不簡單,至少有下忍的實力</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="757617969575493674" id="message-757617969575493674">
+                <div class="chatlog__content">
+                    <div class="markdown">//骰 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757618009081643140" id="message-757618009081643140">
+                <div class="chatlog__content">
+                    <div class="markdown">//對誰？ </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="waganda#7905" data-user-id="686225142862708766" style="color: rgb(187,129,42)">waganda</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618094645706803" id="message-757618094645706803">
+                <div class="chatlog__content">
+                    <div class="markdown">安度因 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757618104783339641" id="message-757618104783339641">
+                <div class="chatlog__content">
+                    <div class="markdown">2d6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 11:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618105383125162" id="message-757618105383125162">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="waganda#7905">@waganda</span>
+2d6：
+8[4+4] = 8 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618234139869204" id="message-757618234139869204">
+                <div class="chatlog__content">
+                    <div class="markdown">//成功 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757618352259727381" id="message-757618352259727381">
+                <div class="chatlog__content">
+                    <div class="markdown">//安度因損失一點生命力和隨機一個特技消失 <span class="chatlog__edited-timestamp" title="21-Sep-20 11:05 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618364108505138" id="message-757618364108505138">
+                <div class="chatlog__content">
+                    <div class="markdown">啥 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757618377194995805" id="message-757618377194995805">
+                <div class="chatlog__content">
+                    <div class="markdown">好 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757618425274040441" id="message-757618425274040441">
+                <div class="chatlog__content">
+                    <div class="markdown">刀術 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618456798560397" id="message-757618456798560397">
+                <div class="chatlog__content">
+                    <div class="markdown">//等等是隨機 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757618475320475788" id="message-757618475320475788">
+                <div class="chatlog__content">
+                    <div class="markdown">//1d6 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757618520409505870" id="message-757618520409505870">
+                <div class="chatlog__content">
+                    <div class="markdown">//是特技分野消失喔 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618543582773401" id="message-757618543582773401">
+                <div class="chatlog__content">
+                    <div class="markdown">… </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618546825101474" id="message-757618546825101474">
+                <div class="chatlog__content">
+                    <div class="markdown">//那一整排 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618559772917840" id="message-757618559772917840">
+                <div class="chatlog__content">
+                    <div class="markdown">1d6 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/544462904037081138/826b76664e4c68ff4d29076c48a02bed.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="HKTRPG#4989" data-user-id="544462904037081138" style="color: rgb(3,3,104)">HKTRPG</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">21-Sep-20 11:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618560121176163" id="message-757618560121176163">
+                <div class="chatlog__content">
+                    <div class="markdown"><span class="mention" title="安度因#5521">@安度因</span>
+1d6：
+4[4] = 4 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618573802864850" id="message-757618573802864850">
+                <div class="chatlog__content">
+                    <div class="markdown">ㄎㄅ </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757618589388898475" id="message-757618589388898475">
+                <div class="chatlog__content">
+                    <div class="markdown">886 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/507870102415474709/c9946306a8d8740cb91b75ad764b39b9.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="燈火#8396" data-user-id="507870102415474709" style="color: rgb(32,102,148)">燈火</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618605310476288" id="message-757618605310476288">
+                <div class="chatlog__content">
+                    <div class="markdown">//又來 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618641557651596" id="message-757618641557651596">
+                <div class="chatlog__content">
+                    <div class="markdown">//ㄟ,斜齒沒在怕謀術沒的吧? <span class="chatlog__edited-timestamp" title="21-Sep-20 11:06 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618673169989734" id="message-757618673169989734">
+                <div class="chatlog__content">
+                    <div class="markdown">//欸 QB 他才是真正想殺比良坂的吧 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757618698348527626" id="message-757618698348527626">
+                <div class="chatlog__content">
+                    <div class="markdown">//兩次隨機都打中 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757618710864461990" id="message-757618710864461990">
+                <div class="chatlog__content">
+                    <div class="markdown">//真的在哭 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/463261566675189760/1da33567882afbc189cbf042a126bc9f.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="天藍雪球#2553" data-user-id="463261566675189760" style="color: rgb(241,196,15)">QB 5號機 (八重虎之介)</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618790883393627" id="message-757618790883393627">
+                <div class="chatlog__content">
+                    <div class="markdown">//<s>他在幫我報仇,我超感謝他的</s> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618812555231293" id="message-757618812555231293">
+                <div class="chatlog__content">
+                    <div class="markdown">//笑死 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="757618965680881704" id="message-757618965680881704">
+                <div class="chatlog__content">
+                    <div class="markdown">苦苦 </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="757619031191584959" id="message-757619031191584959">
+                <div class="chatlog__content">
+                    <div class="markdown">想用兵糧丸 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/517016270395277314/e621e8c286c0c3261e0244d7d7730235.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="赤日#8416" data-user-id="517016270395277314" style="color: rgb(35,73,255)">奈雅-赤日</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="757619777824096286" id="message-757619777824096286">
+                <div class="chatlog__content">
+                    <div class="markdown">//可以直接用 </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314761484947292171/3dc2054d76c5c9934c0089163a328e37.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="安度因#5521" data-user-id="314761484947292171" style="color: rgb(187,129,42)">安度因</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-20 11:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="757620022116876419" id="message-757620022116876419">
+                <div class="chatlog__content">
+                    <div class="markdown">Ok回一個了== </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 233 message(s)</div>
+</div>
+
+</body>
+</html>
